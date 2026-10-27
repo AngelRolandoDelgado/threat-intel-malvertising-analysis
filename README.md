@@ -56,6 +56,14 @@ malicious_ip = ipaddress.ip_address(ip_integer)
 print(f"Decoded Malicious IP: {malicious_ip}")  # Output: 23.94.145.209
 ```
 
+## 🔗 Integration & Threat Intelligence Sharing
+
+### EN: OTX Pulse & Automation
+The indicators of compromise (IOCs) gathered during this investigation have been published to the open-source community via **AlienVault OTX**:
+* **Pulse Reference:** [Threat Intel: Targeted Malvertising Campaign & MSI Dropper Analysis](https://otx.alienvault.com/pulse/6ae053c3148fa6f0b2992167) 
+
+Additionally, the automated de-obfuscation script (`decoder.py`) provided in this repository was utilized to process and normalize the obfuscated infrastructure IP before submission.
+
 ---
 ## 🇪🇸 Versión en Español
 
@@ -107,3 +115,12 @@ ip_integer = 392073681
 malicious_ip = ipaddress.ip_address(ip_integer)
 print(f"IP Maliciosa Decodificada: {malicious_ip}")  # Resultado: 23.94.145.209
 ```
+
+---
+## 🔗 Integración y Compartición de Inteligencia de Amenazas
+
+### ES: Publicación en OTX y Automatización
+Los indicadores de compromiso (IOCs) recopilados durante esta investigación han sido publicados para la comunidad de código abierto a través de **AlienVault OTX**:
+* **Referencia del Pulse:** [Threat Intel: Targeted Malvertising Campaign & MSI Dropper Analysis](https://otx.alienvault.com/pulse/6ae053c3148fa6f0b2992167)
+
+Adicionalmente, el script de de-ofuscación automatizada (`decoder.py`) provisto en este repositorio fue utilizado para procesar y normalizar la IP de infraestructura ofuscada antes de su envío.
