@@ -1,0 +1,61 @@
+title: Silent MSI Download and Execution via Curl (Dropper)
+id: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+status: experimental
+description: Detects the combined execution of curl downloading an .msi file into the temp directory and its subsequent silent installation via msiexec.
+author: Ing Angel Rolando Delgado Pilozo, Cybersecurity Analyst
+references:
+  - Malvertising and dropper campaign analysis
+date: 2026/10/27
+tags:
+  - attack.execution
+  - attack.t1105
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_curl:
+    CommandLine|contains:
+      - 'curl'
+      - '%TEMP%'
+      - '.msi'
+  selection_msiexec:
+    CommandLine|contains:
+      - 'msiexec'
+      - '/qn'
+  condition: selection_curl and selection_msiexec
+falsepositives:
+  - Administrators installing legitimate software (uncommon using curl directly to public IPs).
+level: high
+
+___
+
+title: Descarga e Instalación Silenciosa de MSI vía Curl (Dropper)
+id: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+status: experimental
+description: Detecta la ejecución combinada de curl descargando un archivo .msi en el directorio temporal y su posterior instalación silenciosa con msiexec.
+author: Ing Angel Rolando Delgado Pilozo, Analista de Ciberseguridad
+references:
+  - Análisis interno de campaña de malvertising
+date: 2026/10/27
+tags:
+  - attack.execution
+  - attack.t1105
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_curl:
+    CommandLine|contains:
+      - 'curl'
+      - '%TEMP%'
+      - '.msi'
+  selection_msiexec:
+    CommandLine|contains:
+      - 'msiexec'
+      - '/qn'
+  condition: selection_curl and selection_msiexec
+falsepositives:
+  - Administradores de sistemas instalando software corporativo de forma automatizada (poco común usando curl directamente a IPs públicas).
+level: high
